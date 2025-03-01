@@ -6,8 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A5E9E7942D73B540005A48D1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A5E9E7932D73B540005A48D1 /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		A5E9E7762D73B52C005A48D1 /* Rick-and-Morty-ObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rick-and-Morty-ObjC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5E9E7932D73B540005A48D1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -45,6 +50,7 @@
 		A5E9E76D2D73B52C005A48D1 = {
 			isa = PBXGroup;
 			children = (
+				A5E9E7932D73B540005A48D1 /* README.md */,
 				A5E9E7782D73B52C005A48D1 /* Rick-and-Morty-ObjC */,
 				A5E9E7772D73B52C005A48D1 /* Products */,
 			);
@@ -121,6 +127,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5E9E7942D73B540005A48D1 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
