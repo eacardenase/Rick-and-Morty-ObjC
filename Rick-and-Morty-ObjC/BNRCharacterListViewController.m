@@ -10,6 +10,7 @@
 @interface BNRCharacterListViewController ()
 
 @property (nonatomic) NSURLSession *session;
+@property (nonatomic, copy) NSArray *characters;
 
 @end
 
@@ -22,9 +23,10 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     NSURLSessionDataTask *dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        
-        NSLog(@"%@", json);
+        NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data
+                                                                   options:0
+                                                                     error:nil];
+        self.characters = jsonObject[@"results"];
     }];
     
     [dataTask resume];
@@ -51,18 +53,26 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = UIColor.whiteColor;
+    
+    [self.tableView registerClass:UITableViewCell.class
+           forCellReuseIdentifier:NSStringFromClass(UITableViewCell.class)];
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return self.characters.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(UITableViewCell.class)
+                                                            forIndexPath:indexPath];
+    NSDictionary *character = self.characters[indexPath.row];
+    cell.textLabel.text = character[@"name"];
+    
+    return cell;
 }
 
 @end
