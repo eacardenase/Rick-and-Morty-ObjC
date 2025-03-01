@@ -6,7 +6,7 @@
 //
 
 #import "SceneDelegate.h"
-#import "ViewController.h"
+#import "BNRCharacterListViewController.h"
 
 @interface SceneDelegate ()
 
@@ -21,8 +21,12 @@
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
     
     self.window = [[UIWindow alloc] initWithWindowScene:(UIWindowScene *)scene];
-    self.window.rootViewController = [[ViewController alloc] init];
     
+    BNRCharacterListViewController *characterListController = [[BNRCharacterListViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc]
+                                             initWithRootViewController:characterListController];
+    
+    self.window.rootViewController = navController;
     [self.window makeKeyAndVisible];
 }
 
