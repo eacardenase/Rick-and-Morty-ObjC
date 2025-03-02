@@ -6,6 +6,7 @@
 //
 
 #import "BNRCharacterListViewController.h"
+#import "BNRCharacterDetailsViewController.h"
 
 @interface BNRCharacterListViewController ()
 
@@ -77,6 +78,16 @@
     cell.textLabel.text = character[@"name"];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BNRCharacterDetailsViewController *characterDetailsViewController = [[BNRCharacterDetailsViewController alloc] init];
+    
+    characterDetailsViewController.characterDetails = self.characters[indexPath.row];
+    
+    [self.navigationController pushViewController:characterDetailsViewController
+                                         animated:YES];
 }
 
 @end
