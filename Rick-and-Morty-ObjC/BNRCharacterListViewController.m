@@ -27,6 +27,10 @@
                                                                    options:0
                                                                      error:nil];
         self.characters = jsonObject[@"results"];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
     }];
     
     [dataTask resume];
