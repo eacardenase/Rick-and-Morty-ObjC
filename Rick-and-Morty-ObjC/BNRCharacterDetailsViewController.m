@@ -92,8 +92,8 @@
     
     [NSLayoutConstraint activateConstraints:@[
         [self.characterImageView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:8],
-        [self.characterImageView.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:8],
-        [self.characterImageView.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant:-8],
+        [self.characterImageView.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:20],
+        [self.characterImageView.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant:-20],
         
         [self.characterName.topAnchor constraintEqualToAnchor:self.characterImageView.bottomAnchor constant:10],
         [self.characterName.leadingAnchor constraintEqualToAnchor:self.characterImageView.leadingAnchor],
