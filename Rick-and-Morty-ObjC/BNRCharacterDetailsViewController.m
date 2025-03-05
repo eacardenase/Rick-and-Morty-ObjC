@@ -93,16 +93,17 @@
     [NSLayoutConstraint activateConstraints:@[
         [self.characterImageView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:8],
         [self.characterImageView.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:20],
-        [self.characterImageView.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant:-20],
+        [self.characterImageView.widthAnchor constraintEqualToConstant:200],
+        [self.characterImageView.heightAnchor constraintEqualToAnchor:self.characterImageView.widthAnchor],
         
-        [self.characterName.topAnchor constraintEqualToAnchor:self.characterImageView.bottomAnchor constant:10],
-        [self.characterName.leadingAnchor constraintEqualToAnchor:self.characterImageView.leadingAnchor],
+        [self.characterName.topAnchor constraintEqualToAnchor:self.characterImageView.topAnchor constant:10],
+        [self.characterName.leadingAnchor constraintEqualToAnchor:self.characterImageView.trailingAnchor constant:10],
         
         [self.characterStatus.topAnchor constraintEqualToAnchor:self.characterName.bottomAnchor constant:10],
-        [self.characterStatus.leadingAnchor constraintEqualToAnchor:self.characterImageView.leadingAnchor],
+        [self.characterStatus.leadingAnchor constraintEqualToAnchor:self.characterName.leadingAnchor],
         
         [self.characterSpecie.topAnchor constraintEqualToAnchor:self.characterStatus.bottomAnchor constant:10],
-        [self.characterSpecie.leadingAnchor constraintEqualToAnchor:self.characterImageView.leadingAnchor]
+        [self.characterSpecie.leadingAnchor constraintEqualToAnchor:self.characterName.leadingAnchor]
     ]];
 }
 
