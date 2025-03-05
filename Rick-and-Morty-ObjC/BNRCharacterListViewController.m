@@ -86,8 +86,10 @@
     
     characterDetailsViewController.characterDetails = self.characters[indexPath.row];
     
-    [self.navigationController pushViewController:characterDetailsViewController
-                                         animated:YES];
+    if (!self.splitViewController) {
+        [self.navigationController pushViewController:characterDetailsViewController
+                                             animated:YES];
+    }
 }
 
 @end

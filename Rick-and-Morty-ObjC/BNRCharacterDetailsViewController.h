@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BNRCharacterDetailsViewController : UIViewController
+@interface BNRCharacterDetailsViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (nonatomic, copy) NSDictionary *characterDetails;
 

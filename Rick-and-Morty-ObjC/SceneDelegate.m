@@ -7,6 +7,7 @@
 
 #import "SceneDelegate.h"
 #import "BNRCharacterListViewController.h"
+#import "BNRCharacterDetailsViewController.h"
 
 @interface SceneDelegate ()
 
@@ -23,10 +24,24 @@
     self.window = [[UIWindow alloc] initWithWindowScene:(UIWindowScene *)scene];
     
     BNRCharacterListViewController *characterListController = [[BNRCharacterListViewController alloc] init];
+    BNRCharacterDetailsViewController *detailsController = [[BNRCharacterDetailsViewController alloc] init];
     UINavigationController *navController = [[UINavigationController alloc]
                                              initWithRootViewController:characterListController];
     
-    self.window.rootViewController = navController;
+    if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        UINavigationController *detailNav = [[UINavigationController alloc]
+                                             initWithRootViewController:detailsController];
+        
+        UISplitViewController *splitViewController = [[UISplitViewController alloc] init];
+        
+        splitViewController.delegate = detailsController;
+        splitViewController.viewControllers = @[navController, detailNav];
+        
+        self.window.rootViewController = splitViewController;
+    } else {
+        self.window.rootViewController = navController;
+    }
+    
     [self.window makeKeyAndVisible];
 }
 

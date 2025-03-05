@@ -123,4 +123,14 @@
     self.view.backgroundColor = UIColor.whiteColor;
 }
 
+#pragma mark - UISplitViewControllerDelegate
+
+- (void)splitViewController:(UISplitViewController *)svc
+    willChangeToDisplayMode:(UISplitViewControllerDisplayMode)displayMode
+{
+    if (displayMode == UISplitViewControllerDisplayModeSecondaryOnly) {
+        self.navigationItem.leftBarButtonItem = svc.displayModeButtonItem;
+    }
+}
+
 @end
