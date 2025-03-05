@@ -63,6 +63,7 @@
     if (!_characterName) {
         _characterName = [[UILabel alloc] init];
         _characterName.translatesAutoresizingMaskIntoConstraints = NO;
+        _characterName.numberOfLines = 0;
     }
     
     return _characterName;
@@ -103,6 +104,7 @@
         
         [self.characterName.topAnchor constraintEqualToAnchor:self.characterImageView.topAnchor constant:10],
         [self.characterName.leadingAnchor constraintEqualToAnchor:self.characterImageView.trailingAnchor constant:10],
+        [self.characterName.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant:-8],
         
         [self.characterStatus.topAnchor constraintEqualToAnchor:self.characterName.bottomAnchor constant:10],
         [self.characterStatus.leadingAnchor constraintEqualToAnchor:self.characterName.leadingAnchor],
