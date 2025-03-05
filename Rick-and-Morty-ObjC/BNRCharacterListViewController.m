@@ -82,12 +82,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BNRCharacterDetailsViewController *characterDetailsViewController = [[BNRCharacterDetailsViewController alloc] init];
+    NSDictionary *characterDetails = self.characters[indexPath.row];
     
-    characterDetailsViewController.characterDetails = self.characters[indexPath.row];
+    self.detailsViewController.characterName.text = [NSString stringWithFormat:@"Name: %@", characterDetails[@"name"]];
+    self.detailsViewController.characterStatus.text = [NSString stringWithFormat:@"Status: %@", characterDetails[@"status"]];
+    self.detailsViewController.characterSpecie.text = [NSString stringWithFormat:@"Species: %@", characterDetails[@"species"]];
+    self.detailsViewController.imageURL = [NSURL URLWithString:characterDetails[@"image"]];
     
     if (!self.splitViewController) {
-        [self.navigationController pushViewController:characterDetailsViewController
+        [self.navigationController pushViewController:self.detailsViewController
                                              animated:YES];
     }
 }

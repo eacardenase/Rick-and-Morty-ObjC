@@ -6,27 +6,22 @@
 //
 
 #import "BNRCharacterDetailsViewController.h"
+#import "BNRCharacterListViewController.h"
 
 @interface BNRCharacterDetailsViewController ()
 
 @property (nonatomic) UIImageView *characterImageView;
-@property (nonatomic) UILabel *characterName;
-@property (nonatomic) UILabel *characterStatus;
-@property (nonatomic) UILabel *characterSpecie;
 
 @end
 
 @implementation BNRCharacterDetailsViewController
 
-- (UIImageView *)characterImageView
+- (void)setImageURL:(NSURL *)imageURL
 {
-    if (!_characterImageView) {
-        _characterImageView = [[UIImageView alloc] initWithImage:[UIImage systemImageNamed:@"person.fill"]];
-        _characterImageView.contentMode = UIViewContentModeScaleAspectFit;
-        _characterImageView.translatesAutoresizingMaskIntoConstraints = NO;
-        
-        NSURL *url = [NSURL URLWithString:self.characterDetails[@"image"]];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    _imageURL = imageURL;
+    
+    if (_imageURL) {
+        NSURLRequest *request = [NSURLRequest requestWithURL:_imageURL];
         NSURLSession *session = [NSURLSession
                                  sessionWithConfiguration:NSURLSessionConfiguration.defaultSessionConfiguration];
         
@@ -34,6 +29,12 @@
         
         NSURLSessionTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             BNRCharacterDetailsViewController *strongSelf = weakSelf;
+            
+            if (error) {
+                NSLog(@"%@", error.localizedDescription);
+                
+                return;
+            }
             
             UIImage *characterImage = [UIImage imageWithData:data];
             
@@ -44,6 +45,15 @@
         
         [dataTask resume];
     }
+}
+
+- (UIImageView *)characterImageView
+{
+    if (!_characterImageView) {
+        _characterImageView = [[UIImageView alloc] initWithImage:[UIImage systemImageNamed:@"person.fill"]];
+        _characterImageView.contentMode = UIViewContentModeScaleAspectFit;
+        _characterImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    }
     
     return _characterImageView;
 }
@@ -52,7 +62,6 @@
 {
     if (!_characterName) {
         _characterName = [[UILabel alloc] init];
-        _characterName.text = [NSString stringWithFormat:@"Name: %@", self.characterDetails[@"name"]];
         _characterName.translatesAutoresizingMaskIntoConstraints = NO;
     }
     
@@ -63,7 +72,6 @@
 {
     if (!_characterStatus) {
         _characterStatus = [[UILabel alloc] init];
-        _characterStatus.text = [NSString stringWithFormat:@"Status: %@", self.characterDetails[@"status"]];
         _characterStatus.translatesAutoresizingMaskIntoConstraints = NO;
     }
     
@@ -74,7 +82,6 @@
 {
     if (!_characterSpecie) {
         _characterSpecie = [[UILabel alloc] init];
-        _characterSpecie.text = [NSString stringWithFormat:@"Specie: %@", self.characterDetails[@"species"]];
         _characterSpecie.translatesAutoresizingMaskIntoConstraints = NO;
     }
     
@@ -83,8 +90,6 @@
  
 - (void)setupViews
 {
-    self.navigationItem.title = self.characterDetails[@"name"];
-    
     [self.view addSubview:self.characterImageView];
     [self.view addSubview:self.characterName];
     [self.view addSubview:self.characterStatus];

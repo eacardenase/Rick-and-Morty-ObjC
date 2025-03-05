@@ -7,9 +7,13 @@
 
 #import <UIKit/UIkit.h>
 
+@class BNRCharacterDetailsViewController;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BNRCharacterListViewController : UITableViewController
+
+@property (nonatomic) BNRCharacterDetailsViewController *detailsViewController;
 
 @end
 

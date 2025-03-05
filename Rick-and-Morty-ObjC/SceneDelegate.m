@@ -24,9 +24,12 @@
     self.window = [[UIWindow alloc] initWithWindowScene:(UIWindowScene *)scene];
     
     BNRCharacterListViewController *characterListController = [[BNRCharacterListViewController alloc] init];
-    BNRCharacterDetailsViewController *detailsController = [[BNRCharacterDetailsViewController alloc] init];
+    
     UINavigationController *navController = [[UINavigationController alloc]
                                              initWithRootViewController:characterListController];
+    
+    BNRCharacterDetailsViewController *detailsController = [[BNRCharacterDetailsViewController alloc] init];
+    characterListController.detailsViewController = detailsController;
     
     if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         UINavigationController *detailNav = [[UINavigationController alloc]

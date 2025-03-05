@@ -13,6 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSDictionary *characterDetails;
 
+@property (nonatomic) NSURL *imageURL;
+@property (nonatomic) UILabel *characterName;
+@property (nonatomic) UILabel *characterStatus;
+@property (nonatomic) UILabel *characterSpecie;
+
 @end
 
 NS_ASSUME_NONNULL_END
